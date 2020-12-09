@@ -2,75 +2,96 @@
   <div class="searchContainer">
     <div class="header">
       <!-- 搜索 -->
-      <div class="logoSearch ">
+      <div class="logoSearch">
         <div class="logo"></div>
         <div class="search">
-          <input type="text" />
-          <button>搜索</button>
+          <input type="text" v-model="keyword" @keyup.enter="toSearch"/>
+          <button @click="toSearch">搜索</button>
         </div>
       </div>
       <!-- 菜单 -->
       <div class="typeNav clearfix">
         <ul>
-          <li class="active">综合</li>
-          <li>视频<span>99+</span></li>
-          <li>番剧<span>0</span></li>
-          <li>影视<span>0</span></li>
-          <li>直播<span>11+</span></li>
-          <li>专栏<span>99+</span></li>
-          <li>话题<span>1</span></li>
-          <li>用户<span>99+</span></li>
+          <li :class="{ active: isBorder === 0 }" @mouseenter="isBorder = 0">
+            综合
+          </li>
+          <li :class="{ active: isBorder === 1 }" @mouseenter="isBorder = 1">
+            视频<span>99+</span>
+          </li>
+          <li :class="{ active: isBorder === 2 }" @mouseenter="isBorder = 2">
+            番剧<span>0</span>
+          </li>
+          <li :class="{ active: isBorder === 3 }" @mouseenter="isBorder = 3">
+            影视<span>0</span>
+          </li>
+          <li :class="{ active: isBorder === 4 }" @mouseenter="isBorder = 4">
+            直播<span>11+</span>
+          </li>
+          <li :class="{ active: isBorder === 5 }" @mouseenter="isBorder = 5">
+            专栏<span>99+</span>
+          </li>
+          <li :class="{ active: isBorder === 6 }" @mouseenter="isBorder = 6">
+            话题<span>1</span>
+          </li>
+          <li :class="{ active: isBorder === 7 }" @mouseenter="isBorder = 7">
+            用户<span>99+</span>
+          </li>
         </ul>
       </div>
     </div>
-    <div class="nav">
+
+    <!-- 排序方式 -->
+    <div class="searchSort">
       <div class="topNav">
-        <div class="oneBtn">
-          <a href="##">综合排序</a>
-        </div>
-        <ul>
-          <li><a href="##">最多点击</a></li>
-          <li><a href="##">最新发布</a></li>
-          <li><a href="##">最多弹幕</a></li>
-          <li><a href="##">最多收藏</a></li>
+        <ul class="comprehensive" @click="tabSwich">
+          <li :class="{ active: order === 'totalrank' }">
+            <a href="javascript:;" data-order="totalrank">综合排序</a>
+          </li>
+          <li :class="{ active: order === 'click' }">
+            <a href="javascript:;" data-order="click">最多点击</a>
+          </li>
+          <li :class="{ active: order === 'pubdate' }">
+            <a href="javascript:;" data-order="pubdate">最新发布</a>
+          </li>
+          <li :class="{ active: order === 'dm' }">
+            <a href="javascript:;" data-order="dm">最多弹幕</a>
+          </li>
+          <li :class="{ active: order === 'stow' }">
+            <a href="javascript:;" data-order="stow">最多收藏</a>
+          </li>
         </ul>
       </div>
 
       <div class="topNav">
-        <div class="oneBtn">
-          <a href="##">全部时长</a>
-        </div>
-        <ul>
-          <li><a href="##">10分钟以下</a></li>
-          <li><a href="##">10-30分钟</a></li>
-          <li><a href="##">30-60分钟</a></li>
-          <li><a href="##">60分钟以上</a></li>
+        <ul class="time" @click="tabSwich">
+          <li :class="{ active: duration * 1 === 0 }">
+            <a data-duration="0" href="javascript:;">全部时长</a>
+          </li>
+          <li :class="{ active: duration * 1 === 1 }">
+            <a data-duration="1" href="javascript:;">10分钟以下</a>
+          </li>
+          <li :class="{ active: duration * 1 === 2 }">
+            <a data-duration="2" href="javascript:;">10-30分钟</a>
+          </li>
+          <li :class="{ active: duration * 1 === 3 }">
+            <a data-duration="3" href="javascript:;">30-60分钟</a>
+          </li>
+          <li :class="{ active: duration * 1 === 4 }">
+            <a data-duration="4" href="javascript:;">60分钟以上</a>
+          </li>
         </ul>
       </div>
 
       <div class="topNav">
-        <div class="oneBtn">
-          <a href="##">全部分区</a>
-        </div>
-        <ul class="partitions">
-          <li><a href="##">动画</a></li>
-          <li><a href="##">番剧</a></li>
-          <li><a href="##">国创</a></li>
-          <li><a href="##">音乐</a></li>
-          <li><a href="##">舞蹈</a></li>
-          <li><a href="##">游戏</a></li>
-          <li><a href="##">知识</a></li>
-          <li><a href="##">数码</a></li>
-          <li><a href="##">生活</a></li>
-          <li><a href="##">动画</a></li>
-          <li><a href="##">番剧</a></li>
-          <li><a href="##">国创</a></li>
-          <li><a href="##">音乐</a></li>
-          <li><a href="##">舞蹈</a></li>
-          <li><a href="##">游戏</a></li>
-          <li><a href="##">知识</a></li>
-          <li><a href="##">数码</a></li>
-          <li><a href="##">生活</a></li>
+        <ul class="partitions" @click="tabSwich">
+          <li :class="{ active: tids * 1 === 0 }"><a data-tids='0' href="javascript:;">全部分区</a></li>
+          <li
+            :class="{ active: tids * 1 === item.id }"
+            v-for="(item, index) in regionList"
+            :key="item.id"
+          >
+            <a :data-tids="item.id" href="javascript:;">{{ item.name }}</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -79,269 +100,57 @@
     <div class="content">
       <ul>
         <!-- 视频项 -->
-        <li class="videoItem">
-          <a href="##">
-            <div class="img">
-              <img src="/images/bklogo.png" alt="" />
+        <li
+          class="videoItem"
+          v-for="videoItem in searchParams.result"
+          :key="videoItem.id"
+        >
+          <a href="javascript:;">
+            <!-- 缩略图 -->
+            <div class="lazyImg">
+              <div class="img">
+                <img :src="videoItem.pic" :alt="videoItem.author" />
+              </div>
+              <!-- 时长 -->
+              <span></span>
+              <span class="videoTime">02:09</span>
+            </div>
+            <div class="preview">
+              <!-- 稍后再看 -->
+              <p></p>
             </div>
           </a>
+
+          <!-- 详细信息 -->
           <div class="info">
             <div class="text">
-              <a href="##">【乃木坂46】【字】201206 木村先~生 #123</a>
+              <span v-html="videoItem.title"></span>
             </div>
 
-            <div class="date">
-              <span class="watchNum">3502</span>
-              <span class="time">2020-12-06</span>
+            <div>
+              <div class="date">
+                <span class="watchNum">
+                  <i
+                    class="iconfont icon-bofang1"
+                    style="font-size:5px;color:#999;"
+                  ></i>
+                  122.1万</span
+                >
+                <span class="time">
+                  <i
+                    class="iconfont icon-shijian"
+                    style="font-size:12px;color:#333;"
+                  ></i>
+                  2020-12-06</span
+                >
+              </div>
+              <div class="author">
+                <a href="##">
+                  <i class="iconfont icon-geren" style="font-size:14px;"></i>
+                  {{ videoItem.author }}</a
+                >
+              </div>
             </div>
-            <div class="author"><a href="##">小早川刹那</a></div>
-          </div>
-        </li>
-
-        <li class="videoItem">
-          <a href="##">
-            <div class="img">
-              <img src="/images/bklogo.png" alt="" />
-            </div>
-          </a>
-          <div class="info">
-            <div class="text">
-              <a href="##">【乃木坂46】【字】201206 木村先~生 #123</a>
-            </div>
-
-            <div class="date">
-              <span class="watchNum">3502</span>
-              <span class="time">2020-12-06</span>
-            </div>
-            <div class="author"><a href="##">小早川刹那</a></div>
-          </div>
-        </li>
-
-        <li class="videoItem">
-          <a href="##">
-            <div class="img">
-              <img src="/images/bklogo.png" alt="" />
-            </div>
-          </a>
-          <div class="info">
-            <div class="text">
-              <a href="##">【乃木坂46】【字】201206 木村先~生 #123</a>
-            </div>
-
-            <div class="date">
-              <span class="watchNum">3502</span>
-              <span class="time">2020-12-06</span>
-            </div>
-            <div class="author"><a href="##">小早川刹那</a></div>
-          </div>
-        </li>
-
-        <li class="videoItem">
-          <a href="##">
-            <div class="img">
-              <img src="/images/bklogo.png" alt="" />
-            </div>
-          </a>
-          <div class="info">
-            <div class="text">
-              <a href="##">【乃木坂46】【字】201206 木村先~生 #123</a>
-            </div>
-
-            <div class="date">
-              <span class="watchNum">3502</span>
-              <span class="time">2020-12-06</span>
-            </div>
-            <div class="author"><a href="##">小早川刹那</a></div>
-          </div>
-        </li>
-
-        <li class="videoItem">
-          <a href="##">
-            <div class="img">
-              <img src="/images/bklogo.png" alt="" />
-            </div>
-          </a>
-          <div class="info">
-            <div class="text">
-              <a href="##">【乃木坂46】【字】201206 木村先~生 #123</a>
-            </div>
-
-            <div class="date">
-              <span class="watchNum">3502</span>
-              <span class="time">2020-12-06</span>
-            </div>
-            <div class="author"><a href="##">小早川刹那</a></div>
-          </div>
-        </li>
-
-        <li class="videoItem">
-          <a href="##">
-            <div class="img">
-              <img src="/images/bklogo.png" alt="" />
-            </div>
-          </a>
-          <div class="info">
-            <div class="text">
-              <a href="##">【乃木坂46】【字】201206 木村先~生 #123</a>
-            </div>
-
-            <div class="date">
-              <span class="watchNum">3502</span>
-              <span class="time">2020-12-06</span>
-            </div>
-            <div class="author"><a href="##">小早川刹那</a></div>
-          </div>
-        </li>
-
-        <li class="videoItem">
-          <a href="##">
-            <div class="img">
-              <img src="/images/bklogo.png" alt="" />
-            </div>
-          </a>
-          <div class="info">
-            <div class="text">
-              <a href="##">【乃木坂46】【字】201206 木村先~生 #123</a>
-            </div>
-
-            <div class="date">
-              <span class="watchNum">3502</span>
-              <span class="time">2020-12-06</span>
-            </div>
-            <div class="author"><a href="##">小早川刹那</a></div>
-          </div>
-        </li>
-
-        <li class="videoItem">
-          <a href="##">
-            <div class="img">
-              <img src="/images/bklogo.png" alt="" />
-            </div>
-          </a>
-          <div class="info">
-            <div class="text">
-              <a href="##">【乃木坂46】【字】201206 木村先~生 #123</a>
-            </div>
-
-            <div class="date">
-              <span class="watchNum">3502</span>
-              <span class="time">2020-12-06</span>
-            </div>
-            <div class="author"><a href="##">小早川刹那</a></div>
-          </div>
-        </li>
-
-        <li class="videoItem">
-          <a href="##">
-            <div class="img">
-              <img src="/images/bklogo.png" alt="" />
-            </div>
-          </a>
-          <div class="info">
-            <div class="text">
-              <a href="##">【乃木坂46】【字】201206 木村先~生 #123</a>
-            </div>
-
-            <div class="date">
-              <span class="watchNum">3502</span>
-              <span class="time">2020-12-06</span>
-            </div>
-            <div class="author"><a href="##">小早川刹那</a></div>
-          </div>
-        </li>
-
-        <li class="videoItem">
-          <a href="##">
-            <div class="img">
-              <img src="/images/bklogo.png" alt="" />
-            </div>
-          </a>
-          <div class="info">
-            <div class="text">
-              <a href="##">【乃木坂46】【字】201206 木村先~生 #123</a>
-            </div>
-
-            <div class="date">
-              <span class="watchNum">3502</span>
-              <span class="time">2020-12-06</span>
-            </div>
-            <div class="author"><a href="##">小早川刹那</a></div>
-          </div>
-        </li>
-
-        <li class="videoItem">
-          <a href="##">
-            <div class="img">
-              <img src="/images/bklogo.png" alt="" />
-            </div>
-          </a>
-          <div class="info">
-            <div class="text">
-              <a href="##">【乃木坂46】【字】201206 木村先~生 #123</a>
-            </div>
-
-            <div class="date">
-              <span class="watchNum">3502</span>
-              <span class="time">2020-12-06</span>
-            </div>
-            <div class="author"><a href="##">小早川刹那</a></div>
-          </div>
-        </li>
-
-        <li class="videoItem">
-          <a href="##">
-            <div class="img">
-              <img src="/images/bklogo.png" alt="" />
-            </div>
-          </a>
-          <div class="info">
-            <div class="text">
-              <a href="##">【乃木坂46】【字】201206 木村先~生 #123</a>
-            </div>
-
-            <div class="date">
-              <span class="watchNum">3502</span>
-              <span class="time">2020-12-06</span>
-            </div>
-            <div class="author"><a href="##">小早川刹那</a></div>
-          </div>
-        </li>
-
-        <li class="videoItem">
-          <a href="##">
-            <div class="img">
-              <img src="/images/bklogo.png" alt="" />
-            </div>
-          </a>
-          <div class="info">
-            <div class="text">
-              <a href="##">【乃木坂46】【字】201206 木村先~生 #123</a>
-            </div>
-
-            <div class="date">
-              <span class="watchNum">3502</span>
-              <span class="time">2020-12-06</span>
-            </div>
-            <div class="author"><a href="##">小早川刹那</a></div>
-          </div>
-        </li>
-
-        <li class="videoItem">
-          <a href="##">
-            <div class="img">
-              <img src="/images/bklogo.png" alt="" />
-            </div>
-          </a>
-          <div class="info">
-            <div class="text">
-              <a href="##">【乃木坂46】【字】201206 木村先~生 #123</a>
-            </div>
-
-            <div class="date">
-              <span class="watchNum">3502</span>
-              <span class="time">2020-12-06</span>
-            </div>
-            <div class="author"><a href="##">小早川刹那</a></div>
           </div>
         </li>
       </ul>
@@ -350,11 +159,152 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "Search",
   data() {
-    return {};
+    return {
+      isBorder: 0,
+      regionList: [],
+        keyword: "",
+        // 排序 - totalrank：综合排序 - click：最多点击
+        // - pubdate：最新发布
+        // - dm：最多弹幕
+        // - stow：最多收藏
+
+        order:"totalrank",
+        // 时长
+        duration:'0',
+        // 分区
+        tids: 0,
+        numResults: 0,
+        numPages: 0,
+        page: 1,
+        videoList: [],
+      // searchParams:{
+      //   // ...mapState({
+      //   //   searchParams: (state) => state.search.searchParams,
+      //   // }),
+      // }
+    };
   },
+  beforeMount() {
+    // let { numResults, page, videoList } = this.paramsData;
+    // let searchParams = this.searchParams;
+    // numResults = searchParams.numResults;
+    // page = searchParams.page;
+    // if (searchParams.result) {
+    //   videoList = searchParams.result;
+    //   videoList.forEach((item) => {
+    //     // 上传时间
+    //     item.pubdata = this.formatData(item.pubdate);
+    //     // 历史播放量
+    //     if (item.play >= 10000) {
+    //       item.play = Math.round(item.play / 1000) / 10 + "万";
+    //     } else {
+    //       item.play;
+    //     }
+    //     let orangeDuration = item.duration;
+    //     // 分
+    //     let m = orangeDuration.split(":")[0];
+    //     if (m >= 60) {
+    //       let s = orangeDuration.split(":")[1];
+    //       let h = Math.floor(m / 60);
+    //       let mRemainder = m % 60;
+    //       item.duration = `${h}:${mRemainder}:${s}`;
+    //     } else {
+    //       item.duration;
+    //     }
+    //   });
+    // } else {
+    //   videoList = [];
+    // }
+    // searchParams = {
+    //   ...this.paramsData,
+    //   numResults,
+    //   page,
+    //   videoList,
+    // };
+    // this.paramsData = searchParams;
+    // console.log(this.paramsData);
+    // this.init();
+  },
+  mounted() {
+    this.getRegion();
+    this.getSearch();
+  },
+  methods: {
+    getSearch() {
+      this.$store.dispatch("getSearch", { params: this.$route.query });
+    },
+    // 搜索
+    toSearch() {
+      if(this.keyword.trim()){
+        this.$router.push({path:'/search',query:{
+          ...this.$route.query,
+          keyword:this.keyword
+        }})
+        this.getSearch()
+      }
+    },
+
+    // 排序搜索
+    tabSwich(event) {
+      // console.log(event);
+      // if(event.target)
+      let target = event.target;
+      let data = target.dataset;
+      // console.log(data)
+      if(data.order){
+        // this.order = data.order
+        this.$router.push({path:'/search',query:{
+          ...this.$route.query,
+          order: data.order
+        }})
+      }else if(data.duration){
+        // this.duration = data.duration
+        let order
+        if(!this.$route.query.order){
+          order = 'totalrank'
+        }
+
+        this.$router.push({path:'/search',query:{
+          order:order,
+          ...this.$route.query,
+          duration: data.duration
+        }})
+
+      }else if(data.tids){
+        // this.tids = data.tids
+        this.$router.push({path:'/search',query:{
+          ...this.$route.query,
+          tids:data.tids
+        }})
+      }
+
+      // this.getSearch()
+    },
+    async getRegion() {
+      let result = await this.$API.reqRegion();
+      console.log(result);
+      this.regionList = result;
+    },
+  },
+  computed: {
+    ...mapState({
+      searchParams: (state) => state.search.searchParams,
+    }),
+  },
+  watch:{
+    $route(){
+      this.keyword = this.$route.query.keyword || ''
+      this.order = this.$route.query.order || 'totalrank'
+      this.duration = this.$route.query.duration || 0
+      this.tids = this.$route.query.tids || 0
+      this.getSearch(this.$route.query)
+
+    }
+  }
 };
 </script>
 
@@ -427,6 +377,7 @@ export default {
         height: 100%;
         width: 12.5%;
         line-height: 56px;
+        cursor: pointer;
         text-align: center;
         span {
           font-size: 12px;
@@ -440,44 +391,37 @@ export default {
     }
   }
 
-  // 菜单
-  .nav {
+  // 排序方式
+  .searchSort {
     width: 100%;
     height: 121px;
     padding: 20px 0;
     box-sizing: border-box;
-    border-bottom: 1px solid #ccc;
-    // background: chartreuse;
-
+    // background: pink;
     .topNav {
-      float: left;
-      width: 100%;
       height: 20px;
-      margin-bottom: 10px;
-      .oneBtn {
-        float: left;
-        width: 48px;
-        height: 14px;
-        margin-right: 15px;
-      }
+      margin: 0 0 10px 0;
+
       ul {
-        float: left;
-        width: 90%;
+        height: 100%;
         li {
           float: left;
-          width: 64px;
-          height: 20px;
-          padding: 0 8px;
           margin-right: 15px;
-        }
-      }
-      .partitions {
-        li {
-          width: auto;
-          height: 20px;
           padding: 0 8px;
-          margin: auto;
-          margin: 0 6px 0 0;
+          line-height: 20px;
+        }
+        &.partitions {
+          li {
+            margin: 0;
+          }
+        }
+        li.active {
+          background: #00a1d6;
+          height: 20px;
+          border-radius: 5px;
+          a {
+            color: #fff !important;
+          }
         }
       }
     }
@@ -487,7 +431,7 @@ export default {
   .content {
     width: 100%;
     height: 920px;
-    background: chartreuse;
+    // background: chartreuse;
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
@@ -502,28 +446,61 @@ export default {
       height: 210px;
       margin: 20px 26px 0 0;
       // background: hotpink;
-      border: 1px solid #aaa;
+      border: 1px solid #e7e7e7;
+      border-radius: 5px;
       // 视频区域
       .img {
-        width: 100%;
+        width: 168px;
         height: 100px;
-        background: burlywood;
+        img {
+          display: block;
+          border-radius: 5px 5px 0 0;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .lazyImg {
+        position: relative;
+        .videoTime {
+          display: block;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          // font-weight: 700;
+          color: #fff;
+          padding: 0 3px;
+          border-radius: 2px;
+          background: rgba(0, 0, 0, 0.3);
+        }
       }
       // 底部信息
       .info {
         padding: 5px;
+        display: flex;
+        flex-direction: column;
+        align-content: space-between;
+        height: 110px;
+        box-sizing: border-box;
         .text {
-          margin-bottom: 12px;
+          height: 32px;
+          margin-bottom: 20px;
+          // white-space: nowrap;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+          // text-overflow: ellipsis;
         }
         .date {
           height: 12px;
           margin-bottom: 12px;
           .watchNum {
-            width: 41px;
+            // width: 41px;
             float: left;
           }
           .time {
-            width: 67px;
+            // width: 67px;
             float: right;
           }
         }

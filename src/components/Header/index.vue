@@ -1,20 +1,25 @@
 <template>
   <!-- 头部区域 -->
   <!-- 非Home页的头部为短版 -->
-  <header class="header" :class="{header:true,shortHeader:$route.meta.isHeaderHidden}">
+  <header
+    class="header"
+    :class="{ header: true, shortHeader: $route.meta.isHeaderHidden }"
+  >
     <!-- 头部整体内容 -->
     <div class="headerContent">
       <!-- 导航条 -->
       <div class="nav">
         <ul class="navList">
           <li class="navItem">
-              <span><i class="iconfont icon-bofangqi-zantingxiaodianshi" ></i></span>
+            <span
+              ><i class="iconfont icon-bofangqi-zantingxiaodianshi"></i
+            ></span>
             <!-- <a href="##" style="margin-left:3px;">
             主站</a> -->
-            <router-link to='/home'>主站</router-link>
+            <router-link to="/home">主站</router-link>
           </li>
           <li class="navItem">
-            <a 
+            <a
               href="https://www.bilibili.com/anime/?spm_id_from=333.851.b_696e7465726e6174696f6e616c486561646572.2"
               >番剧</a
             >
@@ -64,7 +69,11 @@
       <!-- 搜索框 -->
       <div class="search">
         <form id="navSearchForm">
-          <input type="text" v-model="keyword" placeholder="大别野里的小富婆，她快乐吗?" />
+          <input
+            type="text"
+            v-model="keyword"
+            placeholder="大别野里的小富婆，她快乐吗?"
+          />
           <div><i class="iconfont icon-sousuo" @click="toSearch"></i></div>
         </form>
       </div>
@@ -111,11 +120,15 @@ export default {
     };
   },
   computed: {},
-  methods: {
-    toSearch(){
-      this.$router.push(`/search?keyword=${this.keyword}`)
-    }
+  mounted() {
   },
+  methods: {
+    toSearch() {
+      this.$router.push(`/search?keyword=${this.keyword}`);
+    },
+
+  },
+
 };
 </script>
 
