@@ -116,6 +116,7 @@
 </template>
 
 <script>
+import ajax from '@/ajax/ajax'
 export default {
   name: "",
   data() {
@@ -147,7 +148,15 @@ export default {
       },
     };
   },
+  mounted(){
+    this.aa();
+  },
   methods: {
+    async aa(){
+        const res = await ajax.get('/search',{params:{keyword:1}});
+        console.log(res)
+      
+    },
     login() {
       this.$refs.accoutValidateForm.validate((valid) => {
         if (valid) {
