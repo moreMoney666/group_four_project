@@ -105,7 +105,7 @@
           v-for="videoItem in searchParams.result"
           :key="videoItem.id"
         >
-          <a href="javascript:;">
+          <a href="javascript:;" @click="toPlay(videoItem.bvid)">
             <!-- 缩略图 -->
             <div class="lazyImg">
               <div class="img">
@@ -234,6 +234,9 @@ export default {
     this.getSearch();
   },
   methods: {
+    toPlay(bvid){
+      this.$router.push({path:`/video/${bvid}`})
+    },
     getSearch() {
       this.$store.dispatch("getSearch", { params: this.$route.query });
     },

@@ -1,9 +1,7 @@
 <template>
   <!-- 头部区域 -->
-  <!-- 非Home页的头部为短版 -->
   <header
-    class="header"
-    :class="{ header: true, shortHeader: $route.meta.isHeaderHidden }"
+    :class="{ header: true, shortHeader: '/home' !== $route.path }"
   >
     <!-- 头部整体内容 -->
     <div class="headerContent">
@@ -104,9 +102,12 @@
     <!-- logo区域 -->
     <div class="coreContainer bLogo bWrap">
       <!-- logo -->
-      <a href="javascript:;" class="logo">
+      <!-- <a href="javascript:;" class="logo">
         <img src="./images/logo.png" alt="" />
-      </a>
+      </a> -->
+      <router-link to='/home' class="logo">
+        <img src="./images/logo.png" alt="" />
+      </router-link>
     </div>
   </header>
 </template>
@@ -219,30 +220,7 @@ export default {
           }
         }
       }
-      // 下拉框样式
-      .downFrame {
-        display: block;
-        width: 100%;
-        position: absolute;
-        top: 36px;
-        .downFrameList {
-          width: 100%;
-          border: 1px solid #e5e9ef;
-          box-sizing: border-box;
-          margin-top: 1px;
-          background: #fff;
-          .downFrameItem {
-            width: 100%;
-            height: 32px;
-            padding: 0 16px;
-            box-sizing: border-box;
-            cursor: pointer;
-            &:hover {
-              background: #f4f4f4;
-            }
-          }
-        }
-      }
+
     }
 
     // 登录注册投稿样式

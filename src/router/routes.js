@@ -1,5 +1,6 @@
 import Home from '@/views/Home'
 import Search from '@/views/Search'
+import Play from '@/views/Play'
 
 export default [
     {
@@ -10,10 +11,11 @@ export default [
     {
         path:'/search',
         component:Search,
-        meta:{
-            isHeaderHidden:true
-        }
     },  
+    {
+        path:'/video/:bvid',
+        component:Play
+    },
     {
         path:'/',
         redirect: '/home'
