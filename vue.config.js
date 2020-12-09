@@ -4,13 +4,14 @@ module.exports = {
      lintOnSave: false,
      
      devServer:{
-         proxy:{
-            // /api/product/getBaseCategoryList
-            
-            // http://182.92.128.115/
-             '/api':{
-                target:'http://182.92.128.115',
-             }
-         }
+        proxy: {
+            '/api': {
+              target: "http://localhost:3000",
+              changeOrigin: true,
+              pathRewrite:{
+                '^/api':''
+              }
+            }
+          }
      }
 }

@@ -8,176 +8,39 @@
         <div class="animation-tit">
           <div class="animation-tit-left">
             <h3>
-              <img src="./images/animation_icon.jpg" />
+              <i class="iconfont icon-donghua1"></i>
               动画
             </h3>
           </div>
           <div class="animation-tit-right">
-            <span>换一换 &nbsp;&nbsp;></span>
+            <span @click="getdynamic() " >换一换 &nbsp;&nbsp;></span>
             <span>更多 &nbsp;&nbsp;></span>
           </div>
         </div>
         <!-- 动画内容 -->
         <div class="animation-content">
           <!-- 动画项 -->
-          <div class="animation-content-item">
+          <div class="animation-content-item" v-for="(item,index) in newdynamic" :key="index">
             <img
-              src="./images/animation_video.jpg"
+              :src="item.pic"
               style="width:198px;height:128px;"
             />
             <div class="animation-content-item-videodes">
               &nbsp;&nbsp;
-              <i class="iconfont icon-bofang"></i>&nbsp; 120.5万
+              <i class="iconfont icon-bofang"></i>&nbsp; 
+              {{item.stat.view}}
               <em class="iconfont icon-dianzan"></em>
-              8.2万
-              <span> 01:30</span>
+               {{item.stat.like}}
+              <span> {{item.duration}}</span>
             </div>
             <div class="text">
-              <p>前方高能，没能能活过1分钟</p>
+              <p>{{item.title}}</p>
               <i class="iconfont icon-VIP"></i>
-              <span icon-VIP>中二的松子菌</span>
+              <span icon-VIP>{{item.owner.name}}</span>
             </div>
           </div>
 
-          <!-- 动画项 -->
-          <div class="animation-content-item">
-            <img
-              src="./images/animation_video.jpg"
-              style="width:198px;height:128px;"
-            />
-            <div class="animation-content-item-videodes">
-              &nbsp;&nbsp;
-              <i class="iconfont icon-bofang"></i>&nbsp; 120.5万
-              <em class="iconfont icon-dianzan"></em>
-              8.2万
-              <span> 01:30</span>
-            </div>
-            <div class="text">
-              <p>前方高能，没能能活过1分钟</p>
-              <i class="iconfont icon-VIP"></i>
-              <span icon-VIP>中二的松子菌</span>
-            </div>
-          </div>
-
-          <!-- 动画项 -->
-          <div class="animation-content-item">
-            <img
-              src="./images/animation_video.jpg"
-              style="width:198px;height:128px;"
-            />
-            <div class="animation-content-item-videodes">
-              &nbsp;&nbsp;
-              <i class="iconfont icon-bofang"></i>&nbsp; 120.5万
-              <em class="iconfont icon-dianzan"></em>
-              8.2万
-              <span> 01:30</span>
-            </div>
-            <div class="text">
-              <p>前方高能，没能能活过1分钟</p>
-              <i class="iconfont icon-VIP"></i>
-              <span icon-VIP>中二的松子菌</span>
-            </div>
-          </div>
-
-          <!-- 动画项 -->
-          <div class="animation-content-item">
-            <img
-              src="./images/animation_video.jpg"
-              style="width:198px;height:128px;"
-            />
-            <div class="animation-content-item-videodes">
-              &nbsp;&nbsp;
-              <i class="iconfont icon-bofang"></i>&nbsp; 120.5万
-              <em class="iconfont icon-dianzan"></em>
-              8.2万
-              <span> 01:30</span>
-            </div>
-            <div class="text">
-              <p>前方高能，没能能活过1分钟</p>
-              <i class="iconfont icon-VIP"></i>
-              <span icon-VIP>中二的松子菌</span>
-            </div>
-          </div>
-
-          <!-- 动画项 -->
-          <div class="animation-content-item">
-            <img
-              src="./images/animation_video.jpg"
-              style="width:198px;height:128px;"
-            />
-            <div class="animation-content-item-videodes">
-              &nbsp;&nbsp;
-              <i class="iconfont icon-bofang"></i>&nbsp; 120.5万
-              <em class="iconfont icon-dianzan"></em>
-              8.2万
-              <span> 01:30</span>
-            </div>
-            <div class="text">
-              <p>前方高能，没能能活过1分钟</p>
-              <i class="iconfont icon-VIP"></i>
-              <span icon-VIP>中二的松子菌</span>
-            </div>
-          </div>
-
-          <!-- 动画项 -->
-          <div class="animation-content-item">
-            <img
-              src="./images/animation_video.jpg"
-              style="width:198px;height:128px;"
-            />
-            <div class="animation-content-item-videodes">
-              &nbsp;&nbsp;
-              <i class="iconfont icon-bofang"></i>&nbsp; 120.5万
-              <em class="iconfont icon-dianzan"></em>
-              8.2万
-              <span> 01:30</span>
-            </div>
-            <div class="text">
-              <p>前方高能，没能能活过1分钟</p>
-              <i class="iconfont icon-VIP"></i>
-              <span icon-VIP>中二的松子菌</span>
-            </div>
-          </div>
-
-          <!-- 动画项 -->
-          <div class="animation-content-item">
-            <img
-              src="./images/animation_video.jpg"
-              style="width:198px;height:128px;"
-            />
-            <div class="animation-content-item-videodes">
-              &nbsp;&nbsp;
-              <i class="iconfont icon-bofang"></i>&nbsp; 120.5万
-              <em class="iconfont icon-dianzan"></em>
-              8.2万
-              <span> 01:30</span>
-            </div>
-            <div class="text">
-              <p>前方高能，没能能活过1分钟</p>
-              <i class="iconfont icon-VIP"></i>
-              <span icon-VIP>中二的松子菌</span>
-            </div>
-          </div>
-
-          <!-- 动画项 -->
-          <div class="animation-content-item">
-            <img
-              src="./images/animation_video.jpg"
-              style="width:198px;height:128px;"
-            />
-            <div class="animation-content-item-videodes">
-              &nbsp;&nbsp;
-              <i class="iconfont icon-bofang"></i>&nbsp; 120.5万
-              <em class="iconfont icon-dianzan"></em>
-              8.2万
-              <span> 01:30</span>
-            </div>
-            <div class="text">
-              <p>前方高能，没能能活过1分钟</p>
-              <i class="iconfont icon-VIP"></i>
-              <span icon-VIP>中二的松子菌</span>
-            </div>
-          </div>
+      
         </div>
       </div>
     </div>
@@ -185,9 +48,41 @@
 </template>
 
 <script>
+
 export default {
+  
   name: "home",
-};
+  data(){
+    return{
+      dynamic: {}, // 用来接收请求回来的数据
+      newdynamic:{}
+    }
+
+  },
+    
+  mounted(){
+    //  获取分区动态数据
+    this.getdynamic();
+  },
+  
+  methods:{
+  async getdynamic() {
+    // 发请求，获取分区动态数据
+  const result = await this.$API.reqdynamic(1)
+  try{
+    if (result){
+      this.dynamic=result
+      //  console.dir(this.dynamic)
+    }
+  }catch(error){
+    alert('失败',error)
+  }
+  this.newdynamic=this.dynamic.archives.slice(0,8) 
+  // console.dir(this.newdynamic);
+  }
+
+  }
+}
 </script>
 
 <style lang="less" scoped>
@@ -206,13 +101,13 @@ export default {
       h3 {
         font-size: 20px;
         font-weight: normal;
-        margin-left: 24px;
         color: #666;
       }
-      img {
-        position: relative;
-        top: 5px;
-        cursor: pointer;
+      i{
+        font-size:36px;
+        vertical-align:middle;
+        color:#7b78eb;
+        margin-right:10px;
       }
       .animation-tit-left {
         width: 628px;
@@ -258,12 +153,15 @@ export default {
         .animation-content-item-videodes {
           height: 20px;
           position: relative;
-          bottom: 23px;
+          bottom: 30px;
           font-size:12px;
           color:white;
+          left:5px;
           span {
-            margin-left: 20px;
            cursor: pointer;
+           position:absolute;
+           right:10px;
+           bottom:0px;
           }
         }
         .text {
@@ -278,6 +176,17 @@ export default {
             float: left;
             color: #666;
             font-size:12px;
+          }
+          p{
+             /* 多行文本省略 */
+            overflow:hidden;
+            text-overflow:ellipsis;
+            /* 变成webkit盒子 */
+            display:-webkit-box;
+            /* 设置纵轴对齐方式 */
+            -webkit-box-orient:vertical;
+            /* 设置盒子多行显示行数 */
+            -webkit-line-clamp:1
           }
         }
       }
