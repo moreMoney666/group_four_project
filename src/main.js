@@ -7,8 +7,9 @@ import store from '@/store'
 import * as api from '@/api'
 Vue.config.productionTip = false
 
-// import '@/utils/element-ui'
-// import '@/api/index.js'
+import Pagination from '@/components/Pagination'
+
+Vue.component('Pagination',Pagination)
 
 new Vue({
   beforeCreate() {

@@ -5,7 +5,7 @@
       <div class="logoSearch">
         <div class="logo"></div>
         <div class="search">
-          <input type="text" v-model="keyword" @keyup.enter="toSearch"/>
+          <input type="text" v-model="keyword" @keyup.enter="toSearch" />
           <button @click="toSearch">搜索</button>
         </div>
       </div>
@@ -84,7 +84,9 @@
 
       <div class="topNav">
         <ul class="partitions" @click="tabSwich">
-          <li :class="{ active: tids * 1 === 0 }"><a data-tids='0' href="javascript:;">全部分区</a></li>
+          <li :class="{ active: tids * 1 === 0 }">
+            <a data-tids="0" href="javascript:;">全部分区</a>
+          </li>
           <li
             :class="{ active: tids * 1 === item.id }"
             v-for="(item, index) in regionList"
@@ -155,6 +157,17 @@
         </li>
       </ul>
     </div>
+
+    <!-- 分页 -->
+    <div class="page">
+      <Pagination
+        :currentPageNum="page"
+        :pageSize="searchParams.numPages"
+        :total="searchParams.numResults"
+        :continueNum="5"
+        @changeNum="changeNum"
+      ></Pagination>
+    </div>
   </div>
 </template>
 
@@ -166,26 +179,18 @@ export default {
     return {
       isBorder: 0,
       regionList: [],
-        keyword: "",
-        // 排序 - totalrank：综合排序 - click：最多点击
-        // - pubdate：最新发布
-        // - dm：最多弹幕
-        // - stow：最多收藏
+      keyword: "",
+      // 排序 - totalrank：综合排序 - click：最多点击
+      // - pubdate：最新发布
+      // - dm：最多弹幕
+      // - stow：最多收藏
 
-        order:"totalrank",
-        // 时长
-        duration:'0',
-        // 分区
-        tids: 0,
-        numResults: 0,
-        numPages: 0,
-        page: 1,
-        videoList: [],
-      // searchParams:{
-      //   // ...mapState({
-      //   //   searchParams: (state) => state.search.searchParams,
-      //   // }),
-      // }
+      order: "totalrank",
+      // 时长
+      duration: "0",
+      // 分区
+      tids: 0,
+      page: 1,
     };
   },
   beforeMount() {
@@ -234,20 +239,30 @@ export default {
     this.getSearch();
   },
   methods: {
-    toPlay(bvid){
-      this.$router.push({path:`/video/${bvid}`})
+    //点击分页器的按钮改变页码
+    changeNum(page){
+      this.page = page
+
+      this.getSearch()
+    },
+    // 点击视频播放
+    toPlay(bvid) {
+      this.$router.push({ path: `/video/${bvid}` });
     },
     getSearch() {
       this.$store.dispatch("getSearch", { params: this.$route.query });
     },
     // 搜索
     toSearch() {
-      if(this.keyword.trim()){
-        this.$router.push({path:'/search',query:{
-          ...this.$route.query,
-          keyword:this.keyword
-        }})
-        this.getSearch()
+      if (this.keyword.trim()) {
+        this.$router.push({
+          path: "/search",
+          query: {
+            ...this.$route.query,
+            keyword: this.keyword,
+          },
+        });
+        this.getSearch();
       }
     },
 
@@ -258,38 +273,46 @@ export default {
       let target = event.target;
       let data = target.dataset;
       // console.log(data)
-      if(data.order){
+      if (data.order) {
         // this.order = data.order
-        this.$router.push({path:'/search',query:{
-          ...this.$route.query,
-          order: data.order
-        }})
-      }else if(data.duration){
+        this.$router.push({
+          path: "/search",
+          query: {
+            ...this.$route.query,
+            order: data.order,
+          },
+        });
+      } else if (data.duration) {
         // this.duration = data.duration
-        let order
-        if(!this.$route.query.order){
-          order = 'totalrank'
+        let order;
+        if (!this.$route.query.order) {
+          order = "totalrank";
         }
 
-        this.$router.push({path:'/search',query:{
-          order:order,
-          ...this.$route.query,
-          duration: data.duration
-        }})
-
-      }else if(data.tids){
+        this.$router.push({
+          path: "/search",
+          query: {
+            order: order,
+            ...this.$route.query,
+            duration: data.duration,
+          },
+        });
+      } else if (data.tids) {
         // this.tids = data.tids
-        this.$router.push({path:'/search',query:{
-          ...this.$route.query,
-          tids:data.tids
-        }})
+        this.$router.push({
+          path: "/search",
+          query: {
+            ...this.$route.query,
+            tids: data.tids,
+          },
+        });
       }
 
       // this.getSearch()
     },
     async getRegion() {
       let result = await this.$API.reqRegion();
-      console.log(result);
+      // console.log(result);
       this.regionList = result;
     },
   },
@@ -298,16 +321,15 @@ export default {
       searchParams: (state) => state.search.searchParams,
     }),
   },
-  watch:{
-    $route(){
-      this.keyword = this.$route.query.keyword || ''
-      this.order = this.$route.query.order || 'totalrank'
-      this.duration = this.$route.query.duration || 0
-      this.tids = this.$route.query.tids || 0
-      this.getSearch(this.$route.query)
-
-    }
-  }
+  watch: {
+    $route() {
+      this.keyword = this.$route.query.keyword || "";
+      this.order = this.$route.query.order || "totalrank";
+      this.duration = this.$route.query.duration || 0;
+      this.tids = this.$route.query.tids || 0;
+      this.getSearch(this.$route.query);
+    },
+  },
 };
 </script>
 
@@ -316,7 +338,7 @@ export default {
   margin: 0 auto;
   width: 980px;
   // background: pink;
-  height: 2200px;
+  // height: 2200px;
   padding: 40px 0 0 0;
   // overflow: hidden;
 
@@ -512,6 +534,17 @@ export default {
         }
       }
     }
+  }
+
+  // 分页
+  .page{
+    width: 100%;
+    height: 105px;
+    // background: pink;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 30px 27px 35px;
+    margin: 0 1px 5px;
   }
 }
 </style>
