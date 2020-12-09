@@ -1,0 +1,141 @@
+.el-popover{
+  min-width: 50px !important;
+}
+.subContainer{
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.subContainer .subChannel{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  max-height: 148px;
+  background-color: #ffffff;
+}
+  
+.subContainer  .subItem{
+  font-size: 12px;
+  white-space: nowrap; 
+  padding: 10px 13px;
+  height: 37px;
+  box-sizing: border-box;
+}
+
+/* header 区域游戏中心样式 */
+.gameCenter {
+  width: 466px;
+  height: 256px;
+  border-radius: 0, 0, 4px, 4px;
+  background-color: #fff;
+}
+.gameCenter .left {
+  width: 265px;
+  margin-top: 12px;
+  float: left;
+}
+.gameCenter .left .banner {
+  width: 240px;
+  height: 128px;
+  margin-left: 12px;
+  display: block;
+}
+.gameCenter .left .banner a {
+  width: 240px;
+  height: 128px;
+  display: block;
+  position: relative;
+}
+.gameCenter .left .banner a img {
+  width: 240px;
+  height: 128px;
+  border-radius: 4px;
+}
+.gameCenter .left .banner a span {
+  width: 220px;
+  padding: 0 10px;
+  border-radius: 4px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 12px;
+  line-height: 30px;
+  text-shadow: 1px,1px,1px,#000;
+}
+.gameCenter .left .brief {
+  margin-top: 6px;
+}
+.gameCenter .left .brief a {
+  width: 64px;
+  height: 104px;
+  padding: 6px 12px 0;
+  float: left;
+  overflow: hidden;
+}
+.gameCenter .left .brief a:hover {
+  background-color: #E5E9EF;
+}
+.gameCenter .left .brief a img {
+  width: 64px;
+  height: 64px;
+
+}
+.gameCenter .left .brief a span {
+  display: block;
+  width: 4em;
+  height: 14px;
+  margin: 8px auto;
+  font-size: 14px;
+  line-height: 1;
+  text-align: center;
+  color: #222;
+  overflow: hidden;
+}
+.gameCenter .right {
+  width: 201px;
+  min-height: 234px;
+  margin-top: 12px;
+  float: left;
+  padding: 35px, 0, 0, 6px;
+  position: relative;
+  box-sizing: border-box;
+}
+.gameCenter .right a {
+  width: 198px;
+  display: block;
+  padding-left: 16px;
+  font-size: 12px;
+  line-height: 28px;
+  color: #222;
+}
+.gameCenter .right a:hover {
+  background-color: #E5E9EF;
+}
+.gameCenter .right .side {
+  position: absolute;
+  right: -200px;
+  bottom: -32px;
+  display: none;
+}
+.gameCenter .right a:hover .side {
+  display: block;
+}
+
+.avatar-uploader .el-upload{
+  display: block;
+}
+/* 版心宽度自适应 */
+@media screen and (min-width: 900px){
+  .bWrap {
+    width: 999px;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .bWrap {
+    width: 1198px;
+  }
+}
+
+
+
+   
