@@ -95,7 +95,7 @@
 <script>
 import { reqRegister, reqCode } from "@/api";
 export default {
-  name: "",
+  name: "Register",
   data() {
     return {
       userMessage: {
@@ -143,7 +143,7 @@ export default {
 
     // 点击注册
     async register() {
-      console.log(111)
+      console.log(111);
       const { phone, name, password, isAgree, code } = this.userMessage;
       if (!name || !password || !phone) {
         this.$message("请输入注册所需信息");
@@ -161,7 +161,7 @@ export default {
               this.$message("手机号已经注册");
             }
           } catch (error) {
-            this.$message(error || '注册失败')
+            this.$message(error || "注册失败");
           }
         }
       }

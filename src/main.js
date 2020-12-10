@@ -2,7 +2,8 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "@/router/index";
 import store from "@/store";
-import api from "@/api";
+import * as api from "@/api";
+import "@/mock/mockServe.js";
 Vue.config.productionTip = false;
 import {
   Select,
@@ -11,7 +12,7 @@ import {
   Popover,
   Form,
   FormItem,
-  Pagination,
+  // Pagination,
   Option,
   Upload,
   Message,
@@ -26,16 +27,18 @@ Vue.use(Input);
 Vue.use(Popover);
 Vue.use(Form);
 Vue.use(FormItem);
-Vue.use(Pagination);
+// Vue.use(Pagination);
 Vue.use(Upload);
-
 Vue.use(VueLazyload, {
   loading: require("./static/loading.gif"),
 });
+
+import Pagination from "@/components/Pagination";
+Vue.component("Pagination", Pagination);
 Vue.prototype.$message = Message;
 new Vue({
   beforeCreate() {
-    Vue.prototype.$api = api;
+    Vue.prototype.$API = api;
   },
   render: (h) => h(App),
   router,

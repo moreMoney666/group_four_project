@@ -1,14 +1,18 @@
 <template>
   <div class="login-container">
+    <!-- 顶部图片 -->
     <div class="top-banner">
       <img
         src="//s1.hdslb.com/bfs/static/passport/static/img/rl_top.35edfde.png"
       />
     </div>
+    <!-- 线 -->
     <div class="title-line">
       <span class="tit" style="font-size: 34px">登录</span>
     </div>
+    <!-- 登录主要内容 -->
     <div class="login-box">
+      <!-- 左侧 -->
       <div class="login-left">
         <div class="login-left">
           <div class="qrcode-login">
@@ -37,6 +41,7 @@
         <div class="line"></div>
       </div>
       <div class="line"></div>
+      <!-- 右侧 -->
       <div class="login-right">
         <div class="from-login">
           <div class="input-box">
@@ -104,6 +109,7 @@
         </div>
       </div>
     </div>
+    <!-- 底部 -->
     <div class="login-footer">
       <p>
         <span>登录即代表你同意</span>
@@ -116,9 +122,9 @@
 </template>
 
 <script>
-import ajax from '@/ajax/ajax'
+import ajax from "@/ajax/ajax";
 export default {
-  name: "",
+  name: "Login",
   data() {
     const checkphone = (rule, value, callback) => {
       const phoneReg = /^1[3|4|5|7|8][0-9]{9}$/;
@@ -148,15 +154,8 @@ export default {
       },
     };
   },
-  mounted(){
-    this.aa();
-  },
   methods: {
-    async aa(){
-        const res = await ajax.get('/search',{params:{keyword:1}});
-        console.log(res)
-      
-    },
+    // 点击登录回调
     login() {
       this.$refs.accoutValidateForm.validate((valid) => {
         if (valid) {
@@ -166,6 +165,7 @@ export default {
         }
       });
     },
+    // 路由跳转
     register() {
       this.$router.push("/register");
     },
