@@ -23,6 +23,7 @@
       </div>
       <div class="password">
         <el-input
+          type="password"
           class="common"
           v-model="userMessage.password"
           placeholder="密码（6-16个字符组成）"
@@ -86,7 +87,6 @@
       </div>
       <div class="textTarget">
         <router-link to="/login">已有账号，直接登录</router-link>
-        <!-- <a href="">已有账号，直接登录</a> -->
       </div>
     </div>
   </div>
@@ -145,6 +145,7 @@ export default {
     async register() {
       console.log(111);
       const { phone, name, password, isAgree, code } = this.userMessage;
+      // 验证表单 如果为空 提示
       if (!name || !password || !phone) {
         this.$message("请输入注册所需信息");
       } else {

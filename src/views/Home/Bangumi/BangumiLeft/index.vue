@@ -79,7 +79,7 @@ export default {
 
 <style lang="less" scoped>
 .Bangumi .space-between .time-line {
-  width: 854px;
+  width: 820px;
   height: 428px;
 }
 .icon .svg-icon {
@@ -144,7 +144,7 @@ export default {
 }
 /*图片 */
 .Bangumi .time-line .list-box {
-  width: 854px;
+  width: 820px;
   height: 376px;
   display: flex;
   flex-wrap: wrap;

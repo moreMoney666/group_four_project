@@ -18,7 +18,7 @@ import {
   Message,
 } from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
-
+import "./validate";
 import VueLazyload from "vue-lazyload";
 Vue.use(Option);
 Vue.use(Select);

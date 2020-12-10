@@ -65,7 +65,7 @@ export default {
       // 第一个数组数据
       this.firstrank = this.rank.slice(0, 1);
       // console.dir(this.firstrank);
-      this.normolrank = this.rank.slice(1);
+      this.normolrank = this.rank.slice(1,10);
     },
   },
 };
@@ -73,10 +73,9 @@ export default {
 
 <style lang="less" scoped>
 .rank {
-  display: flex;
   width: 330px;
   height: 435px;
-  margin: 20px;
+  margin-left: 20px;
   .rank-tit {
     height: 28px;
     font-size: 28px;
@@ -84,6 +83,7 @@ export default {
     padding: 15px 0;
     h3 {
       float: left;
+      font-size:20px;
     }
     span {
       width: 50px;

@@ -89,8 +89,8 @@ export default {
 .container {
   display: flex;
   width: 1200px;
-  height: 428px;
-  margin: 50px auto;
+  height: 470px;
+  margin: 30px auto;
   // background-color: #e0b1cb;
   .animation {
     width: 820px;

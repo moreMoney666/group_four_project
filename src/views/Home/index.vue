@@ -3,6 +3,7 @@
     <Menu></Menu>
     <Carousel></Carousel>
     <Animation></Animation>
+    <Animation></Animation>
     <Bangumi></Bangumi>
   </div>
 </template>
