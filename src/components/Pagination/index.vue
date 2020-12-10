@@ -11,9 +11,7 @@
     </button>
     <button v-if="startEnd.start > 2">···</button>
 
-    <!-- vfor和vif两个指令可以混用
-    如果他们混用了，vfor的优先级比vif高
-    -->
+
     <button
       :class="{ active: currentPageNum === page }"
       v-for="page in startEnd.end"
