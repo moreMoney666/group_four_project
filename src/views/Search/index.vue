@@ -107,14 +107,15 @@
           v-for="videoItem in searchParams.result"
           :key="videoItem.id"
         >
-          <a href="javascript:;" @click="toPlay(videoItem.bvid)">
+        <!--href='javascript:; @click="toPlay(videoItem.bvid)" -->
+          <a :href="videoItem.arcurl" >
             <!-- 缩略图 -->
             <div class="lazyImg">
               <div class="img">
                 <img :src="videoItem.pic" :alt="videoItem.author" />
               </div>
               <!-- 时长 -->
-              <span></span>
+              <!-- <span class="motask"></span> -->
               <span class="videoTime">02:09</span>
             </div>
             <div class="preview">
@@ -157,7 +158,6 @@
         </li>
       </ul>
     </div>
-
     <!-- 分页 -->
     <div class="page">
       <Pagination
@@ -477,12 +477,24 @@ export default {
       .img {
         width: 168px;
         height: 100px;
+        position: relative;
         img {
           display: block;
           border-radius: 5px 5px 0 0;
           width: 100%;
           height: 100%;
         }
+        // 模态框
+        // .motask{
+        //   width: 100%;
+        //   height: 100%;
+        //   // display: none;
+        //   // background: rgba(0, 0, 0, 0.5);
+        //   background: rosybrown;
+        //   position: absolute;
+        //   top: 0;
+        //   left: 0;
+        // }
       }
 
       .lazyImg {

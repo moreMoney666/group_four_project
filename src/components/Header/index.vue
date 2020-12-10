@@ -87,8 +87,8 @@
             </a>
           </div> -->
           <div>
-            <span>登录</span>
-            <span>注册</span>
+            <span @click="$router.push('/login')">登录</span>
+            <span  @click="$router.push('/register')">注册</span> 
           </div>
         </div>
 
@@ -125,7 +125,9 @@ export default {
   },
   methods: {
     toSearch() {
-      this.$router.push(`/search?keyword=${this.keyword}`);
+      if(this.keyword.trim()){
+        this.$router.push(`/search?keyword=${this.keyword}`);
+      }
     },
 
   },
